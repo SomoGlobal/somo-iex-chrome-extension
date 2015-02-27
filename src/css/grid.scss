@@ -6,12 +6,12 @@ $susy: (
   container: 64em,
   columns: 16,
   gutters: .5,
-  gutter-position: inside,
-  debug: (
-    image: show,
-    color: red,
-    output: background
-  )
+  gutter-position: inside
+  // debug: (
+  //   image: show,
+  //   color: red,
+  //   output: background
+  // )
 ); 
 
 $breakpoint-no-query-fallbacks: true;
@@ -21,6 +21,7 @@ $breakpoint-no-query-fallbacks: true;
 .container {
 	@include container;
 	max-width: 90%;
+
 	@include susy-breakpoint($xl	, $susy) {
 		max-width: $xl	;
 	}
@@ -39,7 +40,7 @@ $breakpoint-no-query-fallbacks: true;
 .four {
 	@include span(16 last);
 
-  @include susy-breakpoint($large, $susy) {
+  @include susy-breakpoint($med, $susy) {
     @include span(4 of 16);
   }
 }
@@ -47,7 +48,7 @@ $breakpoint-no-query-fallbacks: true;
 .eight {
 	@include span(8 of 16);
 
-  @include susy-breakpoint($large, $susy) {
+  @include susy-breakpoint($med, $susy) {
     @include span(2 of 16);
   }
 }

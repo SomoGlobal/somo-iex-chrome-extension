@@ -43,7 +43,7 @@ module.exports = function(grunt) {
             require: 'susy'
           },
           files: {                         
-            '<%= meta.buildPath %>style.css': '<%= meta.srcPath %>stylesheets/style.scss'
+            '<%= meta.buildPath %>style.css': '<%= meta.srcPath %>css/style.scss'
           }
         }
       },
