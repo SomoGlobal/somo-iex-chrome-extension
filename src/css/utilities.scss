@@ -1,0 +1,61 @@
+// Mixins
+// ------------------------------------------------------------
+
+/* #breakpoints */
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "small" {
+    @media (min-width: $small) {
+      @content;
+    }
+  }
+ 
+  @else if $breakpoint == "med" {
+    @media (min-width: $med) {
+      @content;
+    }
+  } 
+ 
+  @else if $breakpoint == "large" {
+    @media (min-width: $large) {
+      @content;
+    }
+  }
+  
+  @else if $breakpoint == "xl" {
+    @media (min-width: $xl) {
+      @content;
+    }
+  }
+}
+
+/* #clearfix */
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Placeholders
+// ------------------------------------------------------------
+
+%clearfix {
+   &:after {
+      content: ".";
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+  }
+}
+
+%image-replacement {
+   overflow: hidden;
+   text-align: left;
+   display: block;
+   line-height:0;
+   text-indent: -1000em;
+}

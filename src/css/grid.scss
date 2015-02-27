@@ -1,0 +1,53 @@
+// Grid
+// ------------------------------------------------------------
+
+/* #susy */
+$susy: (
+  container: 64em,
+  columns: 16,
+  gutters: .5,
+  gutter-position: inside,
+  debug: (
+    image: show,
+    color: red,
+    output: background
+  )
+); 
+
+$breakpoint-no-query-fallbacks: true;
+
+// sets clear-fix
+// sets max-width & centering margins
+.container {
+	@include container;
+	max-width: 90%;
+	@include susy-breakpoint($xl	, $susy) {
+		max-width: $xl	;
+	}
+}
+
+.inner-container {
+	@include clearfix;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.block {
+	margin: 1em 0; 
+}
+
+.four {
+	@include span(16 last);
+
+  @include susy-breakpoint($large, $susy) {
+    @include span(4 of 16);
+  }
+}
+
+.eight {
+	@include span(8 of 16);
+
+  @include susy-breakpoint($large, $susy) {
+    @include span(2 of 16);
+  }
+}

@@ -1,0 +1,51 @@
+// Base
+// Base styles for HTML elements. No class's or IDs should be used here.
+
+// Body
+// ------------------------------------------------------------
+body, html {
+  height: 100%;
+  overflow: hidden;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-text-size-adjust:none; 
+}
+
+a, 
+a:link, 
+a:visited, 
+a:hover, 
+a:active {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  color: $base-font;
+  font-family: "AudiType-Normal", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 16px;
+  position: relative;
+  background: #ffffff;
+ }
+
+// Links
+// ------------------------------------------------------------
+a {
+  color: $base-font;
+  text-decoration: none;
+}
+
+// Lists
+// ------------------------------------------------------------
+ul {
+  padding: 0;
+  margin: 0;
+  li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}
