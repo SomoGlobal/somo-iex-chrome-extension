@@ -1,9 +1,8 @@
 {
-  "name": "chrome-extension",
-  "version": "0.0.1",
+  "name": "somo-iex-chrome-extension",
+  "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "autoprefixer-core": "^3.1.2",
     "grunt": "~0.4.2",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-compress": "^0.12.0",
@@ -14,7 +13,6 @@
     "grunt-contrib-sass": "~0.7.2",
     "grunt-contrib-uglify": "~0.3.2",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-postcss": "^0.1.0",
     "install": "~0.1.7"
   }
 }

@@ -1,1 +1,0 @@
-chrome.extension.sendMessage({},function(){var readyStateCheckInterval=setInterval(function(){"complete"===document.readyState&&(clearInterval(readyStateCheckInterval),console.log("Hello. This message was sent from scripts/inject.js"))},10)});

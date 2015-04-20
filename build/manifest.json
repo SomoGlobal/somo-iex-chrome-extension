@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Somo Latest",
+  "description": "All the latest and greatest mobile goings-on",
+  "version": "0.1",
+  "icons": {
+    "16": "assets/images/icon.png",
+    "48": "assets/images/icon.png",
+    "128": "assets/images/icon.png"
+  },
+  "browser_action": {
+    "default_icon": "assets/images/icon.png",
+    "default_title": "Somo tab"
+  },
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "tabs"
+  ]
+}

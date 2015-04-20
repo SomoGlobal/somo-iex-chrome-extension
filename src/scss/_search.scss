@@ -1,0 +1,22 @@
+.search {
+  text-align: center;
+  width: 100%;
+  &__input {
+    background-color: $slate;
+    border: 0;
+    outline: none;
+    width: 100%;
+
+    @media (min-width: $med) {
+      width: 400px;
+    }
+  }
+
+  &__submit {
+    width: 100%;
+
+    @media (min-width: $med) {
+      width: 100px;
+    }
+  }
+}

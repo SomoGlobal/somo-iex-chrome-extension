@@ -1,192 +1,204 @@
+/* global module, require */
+
+'use strict';
+
 module.exports = function(grunt) {
+  
+  // JS files to be concatenated and compacted (in build priority order)
+  var jsOrder = [
+    '<%= meta.srcPath %>/js/vendor/jquery-2.1.3.js',
+    '<%= meta.srcPath %>/js/vendor/*.js',
+    '<%= meta.srcPath %>/js/*.js'
+  ];
+  
+  // Project configuration.
+  grunt.initConfig({
     
-    // JS files to be concatenated
-    var jsList = [
-      '<%= meta.srcPath %>js/jquery.min.js',
-      '<%= meta.srcPath %>js/main.js'
-    ]
-
-    // Vars for Tasks
-    var autoprefixer = require('autoprefixer-core');
-
-
-    // Project configuration.
-    grunt.initConfig({
- 
-      //Read the package.json (optional)
-      pkg: grunt.file.readJSON('package.json'),
-
-      // Metadata.
-      meta: {
-        buildPath: 'assets/',
-        srcPath: 'src/',
-        deliverPath: 'deliverable/',
-      },
-
-
-      // Task configuration:
-      // SASS
-      sass: {
-        dev: {
-          options: {
-            style: 'expanded',
-            sourcemap: true,
-            require: 'susy'
-          },
-          files: {                         
-            '<%= meta.buildPath %>style.css': '<%= meta.srcPath %>css/style.scss'
-          }
-        },
-        build: {
-          options: {
-            style: 'compressed',
-            require: 'susy'
-          },
-          files: {                         
-            '<%= meta.buildPath %>style.css': '<%= meta.srcPath %>css/style.scss'
-          }
-        }
-      },
-
-
-      // Concat
-      concat: {
+    //Read the package.json (optional)
+    pkg: grunt.file.readJSON('package.json'),
+    
+    // Metadata.
+    meta: {
+      projectName: '<%= pkg.name %>',
+      projectVersion: '<%= pkg.version %>',
+      srcPath: 'src',
+      buildPath: 'build/assets',
+      distPath: 'dist',
+      distFilename: '<%= meta.projectName %>-<%= meta.projectVersion %>__<%= grunt.template.today("yyyy-mm-dd") %>'
+    },
+    
+    // Task configuration:
+    // SASS
+    sass: {
+      dev: {
         options: {
-          separator: ' ',
-          stripBanners: true,
-          banner: '/*! <%= meta.projectName %> - <%= grunt.template.today("yyyy-mm-dd") %> */',
+          style: 'expanded',
+          require: 'susy'
         },
-        application: {
-          src: [jsList],
-          dest: '<%= meta.buildPath %>main.js',
-        },
+        files: {
+          '<%= meta.buildPath %>/styles/<%= meta.projectName %>.css': '<%= meta.srcPath %>/scss/main.scss'
+        }
       },
-
-      // Copy
-        copy: {
-          images: {
-            files: [
-              {expand: true, flatten: true, src: ['<%= meta.srcPath %>images/**',  '!<%= meta.srcPath %>images/**/*.psd'], dest: '<%= meta.buildPath %>', filter: 'isFile'}
-            ]
-          },
-
-          fonts: {
-            files: [
-              {expand: true, flatten: true, src: ['<%= meta.srcPath %>fonts/**'], dest: '<%= meta.buildPath %>', filter: 'isFile'}
-            ]
-          },
-
-          videos: {
-            files: [
-              {expand: true, flatten: true, src: ['<%= meta.srcPath %>videos/**'], dest: '<%= meta.buildPath %>', filter: 'isFile'}
-            ]
-          },
-      },
-
-      // Uglify 
-      uglify: {
+      build: {
         options: {
-          mangle: false
+          style: 'compressed',
+          sourcemap: false,
+          require: 'susy'
         },
-        my_target: {
-          files: {
-            '<%= meta.buildPath %>main.js': '<%= meta.buildPath %>main.js',
-          }
+        files: {                         
+          '<%= meta.buildPath %>/styles/<%= meta.projectName %>.css': '<%= meta.srcPath %>/scss/main.scss'
         }
+      }
+    },
+    
+    // Concat
+    concat: {
+      options: {
+        separator: ' ',
+        stripBanners: true,
+        banner: '/*! <%= meta.projectName %> v<%= meta.projectVersion %> [<%= grunt.template.today("yyyy-mm-dd") %>] */',
       },
-
-      // CSS min
-      cssmin: {
-        minify: {
-          options: {
-          },
-          files: {
-            '<%= meta.buildPath %>style.css': '<%= meta.buildPath %>style.css'
-            }
-        }
+      application: {
+        src: [jsOrder],
+        dest: '<%= meta.buildPath %>/scripts/<%= meta.projectName %>.js',
       },
-
-      // Compress
-      compress: {
-        main: {
-          options: {
-            archive: '<%= meta.deliverPath %><%= pkg.name %>-<%= grunt.template.today("yyyy-mm-dd") %>.zip'
-          },
-          files: [
-            {expand: true, cwd: 'assets/', src: ['**'], dest: '<%= pkg.name %>-<%= grunt.template.today("yyyy-mm-dd") %>/assets/'},
-            {expand: true, src: ['index.html'], dest: '<%= pkg.name %>-<%= grunt.template.today("yyyy-mm-dd") %>/'}
-          ]
-        }
-      },
-
-      // Post CSS
-      postcss: {
-          options: {
-              processors: [
-                autoprefixer({ 
-                  browsers: ['last 6 versions'],
-                }).postcss
-              ]
-          },
-          dist: { src: '<%= meta.buildPath %>style.css' }
-      },
-
-      // Imagemin
-      imagemin: {
-        dynamic: {
-          files: [{
+    },
+    
+    // Copy
+    copy: {
+      images: {
+        files: [
+          {
             expand: true,
-            cwd:    '<%= meta.buildPath %>',
-            src:    ['**/*.{png,jpg,gif}'],
-            dest:   '<%= meta.buildPath %>'
-          }]
+            flatten: true,
+            src: ['<%= meta.srcPath %>/img/**',  '!<%= meta.srcPath %>/img/**/*.psd'],
+            dest: '<%= meta.buildPath %>/images',
+            filter: 'isFile'
+          }
+        ]
+      },
+      fonts: {
+        files: [
+          {
+            expand: true,
+            flatten: true,
+            src: ['<%= meta.srcPath %>/fonts/**'],
+            dest: '<%= meta.buildPath %>/styles/fonts',
+            filter: 'isFile'
+          }
+        ]
+      }
+    },
+    
+    // Uglify 
+    uglify: {
+      options: {
+        screwIE8: true
+      },
+      my_target: {
+        files: {
+          '<%= meta.buildPath %>/scripts/<%= meta.projectName %>.js': '<%= meta.buildPath %>/scripts/<%= meta.projectName %>.js'
         }
+      }
+    },
+    
+    // CSS min
+    cssmin: {
+      minify: {
+        options: {},
+        files: {
+          '<%= meta.buildPath %>/styles/<%= meta.projectName %>.css': '<%= meta.buildPath %>/styles/<%= meta.projectName %>.css'
+        }
+      }
+    },
+    
+    // Compress
+    compress: {
+      main: {
+        options: {
+          archive: '<%= meta.distPath %>/<%= meta.distFilename %>.zip'
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'build',
+            src: ['*'],
+            dest: '<%= meta.distFilename %>'
+          },
+          {
+            expand: true,
+            cwd: 'build/assets',
+            src: ['**'],
+            dest: '<%= meta.distFilename %>/assets'
+          },
+        ]
+      }
+    },
+    
+    // Imagemin
+    imagemin: {
+      dynamic: {
+        files: [
+          {
+            expand: true,
+            cwd:    '<%= meta.buildPath %>/img',
+            src:    ['**/*.{png,jpg,gif}'],
+            dest:   '<%= meta.buildPath %>/images/'
+          }
+        ]
+      }
+    },
+    
+    // Watch
+    watch: {
+      sass: {
+        files: ['<%= meta.srcPath %>/scss/**/*.scss'],
+        tasks: ['sass:dev']
       },
-     
-      // Watch
-      watch: {
-        sass: {
-            files: ['<%= meta.srcPath %>css/**/*.scss'],
-            tasks: ['sass:dev', 'postcss']
-        },
-        javascripts: {
-          files: ['<%= meta.srcPath %>js/**/*.js'],
-          tasks: ['concat']
-        },
-        images: {
-          files: ['<%= meta.srcPath %>images/**/*.jpg','<%= meta.srcPath %>/images/**/*.png','<%= meta.srcPath %>/images/**/*.gif','<%= meta.srcPath %>/images/**/*.svg'],
-          tasks: ['copy:images']
-        },
-        fonts: {
-          files: ['<%= meta.srcPath %>fonts/**/*.*'],
-          tasks: ['copy:fonts']
-        },
-        videos: {
-          files: ['<%= meta.srcPath %>videos/**/*.*'],
-          tasks: ['copy:videos']
-        },
+      javascripts: {
+        files: ['<%= meta.srcPath %>/js/**/*.js'],
+        tasks: ['concat']
       },
-
-      clean: ["<%= meta.buildPath %>", "<%= meta.deliverPath %>"]
- 
-    });
- 
-    // These plugins provide necessary tasks.
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-compress');
-    grunt.loadNpmTasks('grunt-postcss');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
- 
-    // Default task.
-    grunt.registerTask('default', ['sass:dev', 'postcss', 'concat', 'copy']);
-
-    // Build Task
-    grunt.registerTask('build', ['clean', 'sass:build', 'postcss', 'concat', 'copy', 'uglify', 'cssmin', 'imagemin']);
-
+      images: {
+        files: [
+          '<%= meta.srcPath %>/images/**/*.jpg',
+          '<%= meta.srcPath %>/images/**/*.png',
+          '<%= meta.srcPath %>/images/**/*.gif',
+          '<%= meta.srcPath %>/images/**/*.svg'
+        ],
+        tasks: ['copy:images']
+      },
+      fonts: {
+        files: ['<%= meta.srcPath %>/fonts/**/*.*'],
+        tasks: ['copy:fonts']
+      }
+    },
+    
+    clean: [
+      "<%= meta.buildPath %>",
+      "<%= meta.distPath %>"
+    ]
+    
+  });
+  
+  // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
+  
+  // Default 
+  grunt.registerTask('default', ['sass:dev', 'concat', 'copy']);
+  
+  // Build (dev)
+  grunt.registerTask('build', ['clean', 'sass:build', 'concat', 'copy', 'uglify', 'cssmin', 'imagemin']);
+  
+  // Dist tast
+  grunt.registerTask('dist', ['clean', 'sass:build', 'concat', 'copy', 'uglify', 'cssmin', 'imagemin', 'compress']);
+  
 };
