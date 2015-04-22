@@ -48,7 +48,7 @@ Somo.Views = (function() {
     Somo.Views.PostForm = Backbone.View.extend({
       
       render: function() {
-        var rawTemplate = $('#post-form').html(),
+        var rawTemplate = $('#post-form-template').html(),
             compiledTemplate = _.template(rawTemplate),
             renderedTemplate = compiledTemplate();
         this.$el.html(renderedTemplate);
@@ -72,18 +72,36 @@ Somo.UI = (function() {
   
   var $postFormWrapper = $('#post-form-wrapper'),
       $postFormTrigger = $('#post-form-trigger'),
+      $postForm = false,
       postFormShown = false;
   
   function init() {
     
     $postFormTrigger.on('click', function(e) {
+      
       e.preventDefault();
+      
       if (!postFormShown) {
-        var postForm = new Somo.Views.PostForm();
-        postForm.render();
-        $postFormWrapper.append(postForm.$el);
-        postFormShown = true;
+        
+        if (!$postForm) {
+          var postFormView = new Somo.Views.PostForm();
+          postFormView.render();
+          $postFormWrapper.append(postFormView.$el);
+          $postForm = $('#post-form');
+        }
+        else {
+          $postForm.show();
+        }
+        
       }
+      else {
+        
+        $postForm.hide();
+        
+      }
+      
+      postFormShown = $postForm.is(':visible');
+      
     });
     
   }
