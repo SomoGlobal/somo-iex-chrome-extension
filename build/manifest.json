@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Somo Latest",
+  "name": "Somo Feed",
   "description": "All the latest and greatest mobile goings-on",
   "version": "0.1",
   "icons": {
@@ -10,7 +10,7 @@
   },
   "browser_action": {
     "default_icon": "assets/images/icon.png",
-    "default_title": "Somo tab"
+    "default_title": "Somo Feed"
   },
   "chrome_url_overrides" : {
     "newtab": "index.html"

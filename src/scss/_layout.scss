@@ -1,4 +1,10 @@
 body {
-  background: url(background.jpg)no-repeat center center;
+  background: transparent url('../images/background.jpg') 50% 50% no-repeat;
   background-size: cover;
+}
+
+// CONTENT BLOCKS ======================================================
+
+.content-block {
+  background: #fff;
 }

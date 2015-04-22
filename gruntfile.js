@@ -6,7 +6,9 @@ module.exports = function(grunt) {
   
   // JS files to be concatenated and compacted (in build priority order)
   var jsOrder = [
-    '<%= meta.srcPath %>/js/vendor/jquery-2.1.3.js',
+    '<%= meta.srcPath %>/js/vendor/jquery2.js',
+    '<%= meta.srcPath %>/js/vendor/underscore.js',
+    '<%= meta.srcPath %>/js/vendor/backbone.js',
     '<%= meta.srcPath %>/js/vendor/*.js',
     '<%= meta.srcPath %>/js/*.js'
   ];

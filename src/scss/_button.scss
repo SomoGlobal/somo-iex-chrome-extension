@@ -1,8 +1,10 @@
 .button {
   border: 0;
   outline: none;
+  background: #5ec0c3;
   padding: 10px;
-
+  color: #fff;
+  
   &--grey {
     background-color: $slate;
   }

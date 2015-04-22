@@ -1,41 +1,86 @@
+<!DOCTYPE html>
 
 <html>
- <head>
-  <title>Somo tab</title>
-  <link rel="stylesheet" type="text/css" href="assets/styles/somo-iex-chrome-extension.css">
-  <script src="assets/scripts/somo-iex-chrome-extension.js"></script>
- </head>
- <body>
   
-  <div class="container">
-    <div class="inner-container">
-      <div class="search one">
-        <input type="text" class="search__input" placeholder="Good Morning" />
-        <input type="submit" class="search__submit button button--grey" value="submit" />
+  <head>
+    <meta charset="utf-8">
+    <title>Somo Feed</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/somo-iex-chrome-extension.css">
+  </head>
+  
+  <body>
+    
+    <div class="container">
+      
+      <div class="inner-container">
+        <div class="search one">
+          <input type="text" class="search__input" placeholder="Search…" />
+          <input type="submit" class="search__submit button button--grey" value="submit" />
+        </div>
       </div>
-    </div>
-    <div class="inner-container">
-      <ul class="navigation">
-        <li class="eight navigation__site"><a href="#">bbc</a></li>
-        <li class="eight navigation__site"<a href="#" class="">trello</a></li>
-        <li class="eight navigation__site"<a href="#" class="">google drive</a></li>
-        <li class="eight navigation__site"<a href="#" class="">tech crunch</a></li>
-        <li class="eight navigation__site"<a href="#" class="">trello</a></li>
-        <li class="eight navigation__site"<a href="#" class="">trello</a></li>
-        <li class="eight navigation__site"<a href="#" class="">trello</a></li>
-        <li class="eight navigation__site"<a href="#" class="">add</a></li>
-      </ul>
-    </div>
-    <div class="inner-container">
-      <div class="block four"><div class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div></div>
-      <div class="block four"><div class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div></div>
-      <div class="block four"><div class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div></div>
-      <div class="block four"><div class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div></div>
-      <div class="block four"><div class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div></div>
-      <div class="block four"><div class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div></div>
-      <div class="block four"><div class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div></div>
-      <div class="block four"><div class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div></div>
-    </div>
-  </div>
+      
+      <div class="inner-container">
+        <ul class="navigation">
+          <li class="eight navigation__site"><a href="#">bbc</a></li>
+          <li class="eight navigation__site"<a href="#" class="">trello</a></li>
+          <li class="eight navigation__site"<a href="#" class="">google drive</a></li>
+          <li class="eight navigation__site"<a href="#" class="">tech crunch</a></li>
+          <li class="eight navigation__site"<a href="#" class="">trello</a></li>
+          <li class="eight navigation__site"<a href="#" class="">trello</a></li>
+          <li class="eight navigation__site"<a href="#" class="">trello</a></li>
+          <li class="eight navigation__site"<a href="#" class="">add</a></li>
+        </ul>
+      </div><!-- /.inner-container -->
+      
+      <div class="inner-container">
+        <div class="block four">
+          <div class="content-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div>
+        </div><!-- /.content-block -->
+        <div class="block four">
+          <div class="content-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div>
+        </div>
+        <div class="block four">
+          <div class="content-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div>
+        </div>
+        <div class="block four">
+          <div class="content-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div>
+        </div>
+        <div class="block four">
+          <div class="content-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div>
+        </div>
+        <div class="block four">
+          <div class="content-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div>
+        </div>
+        <div class="block four">
+          <div class="content-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div>
+        </div>
+        <div class="block four">
+          <div class="content-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at accumsan sapien. Etiam arcu risus, aliquam nec ornare non, finibus a nulla.</div>
+        </div>
+        
+        <div class="block four">
+          <div id="post-form-wrapper" class="container-block">
+            <button id="post-form-trigger" class="button">+</button>
+          </div>
+        </div>
+        
+      </div><!-- /.inner-container -->
+      
+    </div><!-- /.container -->
+    
+    
+    <!-- VIEW TEMPLATES ============================================ -->
+    <script id="post-form" type="text/html">
+      <form action="#" method="post" class="container-block">
+        <textarea name="copy" id="" cols="30" rows="10"></textarea>
+        <input type="submit" value="Post" id="post-content" class="button">
+      </form>
+    </script>
+    
+    
+    <script src="assets/scripts/somo-iex-chrome-extension.js"></script>
+    
+    
  </body>
+ 
 </html>

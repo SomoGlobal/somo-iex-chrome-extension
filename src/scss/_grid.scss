@@ -5,8 +5,8 @@
 $susy: (
   container: 64em,
   columns: 16,
-  gutters: .5,
-  gutter-position: inside
+  gutters: 1,
+  gutter-position: inside,
   // debug: (
   //   image: show,
   //   color: red,
@@ -14,27 +14,22 @@ $susy: (
   // )
 ); 
 
-$breakpoint-no-query-fallbacks: true;
+$breakpoint-no-query-fallbacks: false;
 
 // sets clear-fix
 // sets max-width & centering margins
 .container {
   @include container;
   max-width: 90%;
-
-  @include susy-breakpoint($xl  , $susy) {
-    max-width: $xl  ;
+  
+  @include susy-breakpoint($xl, $susy) {
+    max-width: $xl;
   }
-}
-
-.inner-container {
-  @include clearfix;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  
 }
 
 .block {
-  margin: 1em 0; 
+  margin: 1.04167% 0; 
 }
 
 .four {
@@ -43,6 +38,7 @@ $breakpoint-no-query-fallbacks: true;
   @include susy-breakpoint($med, $susy) {
     @include span(4 of 16);
   }
+  
 }
 
 .eight {
@@ -51,4 +47,5 @@ $breakpoint-no-query-fallbacks: true;
   @include susy-breakpoint($med, $susy) {
     @include span(2 of 16);
   }
+  
 }
